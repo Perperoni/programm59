@@ -17,13 +17,21 @@ public class MonthMain {
         System.out.println("==============");
         System.out.println();
 
-        /*
-        TODO
+        System.out.println("Totalt forbruk: " +
+                MonthlyPower.computePowerUsage(power_usage_month));
 
-         Write code that tests the methods you implement in the MonthlyPower class
-         Remember to teste the methods as you implement them
-         Remember to also to check that you get the expected results
-         */
+        System.out.println("Over 5000 kWh? " +
+                MonthlyPower.exceedThreshold(power_usage_month, 5000));
+
+        System.out.println("Spot pris: " +
+                MonthlyPower.computeSpotPrice(power_usage_month, power_prices_month));
+
+        System.out.println("Strømstøtte: " +
+                MonthlyPower.computePowerSupport(power_usage_month, power_prices_month));
+
+        System.out.println("Norgespris: " +
+                MonthlyPower.computeNorgesPrice(power_usage_month));
+
 
     }
 }

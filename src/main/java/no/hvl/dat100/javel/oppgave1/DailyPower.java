@@ -5,15 +5,19 @@ public class DailyPower {
     // a) print power prices during a day
     public static void printPowerPrices(double[] prices) {
 
-        // TODO
-
+        for (double p : prices) {
+            System.out.printf("%.2f NOK ", p);
+        }
+        System.out.println();
     }
 
     // b) print power usage during a day
     public static void printPowerUsage(double[] usage) {
 
-        // TODO
-
+        for (double u : usage) {
+            System.out.printf("%.2f kWh ", u);
+        }
+        System.out.println();
     }
 
     // c) compute power usage for a single day
@@ -21,7 +25,9 @@ public class DailyPower {
 
         double sum = 0;
 
-        // TODO
+        for (double u : usage) {
+            sum += u;
+        }
 
         return sum;
     }
@@ -31,7 +37,9 @@ public class DailyPower {
 
         double price = 0;
 
-        // TODO
+        for (int i = 0; i < usage.length; i++) {
+            price += usage[i] * prices[i];
+        }
 
         return price;
     }
@@ -44,7 +52,9 @@ public class DailyPower {
 
         double support = 0;
 
-        // TODO
+        if (price > THRESHOLD) {
+            support = (price - THRESHOLD) * PERCENTAGE * usage;
+        }
 
         return support;
     }
@@ -54,7 +64,9 @@ public class DailyPower {
 
         double support = 0;
 
-        // TODO
+        for (int i = 0; i < usage.length; i++) {
+            support += getSupport(usage[i], prices[i]);
+        }
 
         return support;
     }
@@ -66,27 +78,32 @@ public class DailyPower {
 
         double price = 0;
 
-        // TODO
+        for (double u : usage) {
+            price += u * NORGESPRIS_KWH;
+        }
 
         return price;
     }
 
-    // g) compute peak usage during a single day
+    // h) compute peak usage during a single day
     public static double findPeakUsage(double[] usage) {
 
-        double temp_max = 0;
+        double temp_max = usage[0];
 
-        // TODO
+        for (double u : usage) {
+            if (u > temp_max) {
+                temp_max = u;
+            }
+        }
 
         return temp_max;
     }
 
+    // i) compute avg usage for a single day
     public static double findAvgPower(double[] usage) {
 
-        double average = 0;
+        double sum = computePowerUsage(usage);
 
-        // TODO
-
-        return average;
+        return sum / usage.length;
     }
 }

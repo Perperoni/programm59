@@ -8,18 +8,19 @@ public class Customers {
 
     // a) Complete constructor
     public Customers(int size) {
-
-        // TODO
-
+        customers = new Customer[size];
     }
 
     // b) count number of non-null references
     public int countNonNull() {
 
-
         int count = 0;
 
-        // TODO
+        for (Customer c : customers) {
+            if (c != null) {
+                count++;
+            }
+        }
 
         return count;
     }
@@ -27,10 +28,14 @@ public class Customers {
     // c) return reference to customer with given id (if exists)
     public Customer getCustomer(int customer_id) {
 
-        boolean funnet = false;
         Customer c = null;
 
-        // TODO
+        for (Customer cust : customers) {
+            if (cust != null && cust.getCustomer_id() == customer_id) {
+                c = cust;
+                break;
+            }
+        }
 
         return c;
     }
@@ -40,7 +45,14 @@ public class Customers {
 
         boolean inserted = false;
 
-        // TODO
+        for (int i = 0; i < customers.length; i++) {
+
+            if (customers[i] == null) {
+                customers[i] = c;
+                inserted = true;
+                break;
+            }
+        }
 
         return inserted;
     }
@@ -48,21 +60,32 @@ public class Customers {
     // e) remove customer with given id from reference table
     public Customer removeCustomer(int customer_id) {
 
-        boolean deleted = false;
-        Customer c = null;
+        Customer removed = null;
 
-        // TODO
+        for (int i = 0; i < customers.length; i++) {
 
-        return c;
+            if (customers[i] != null &&
+                    customers[i].getCustomer_id() == customer_id) {
+
+                removed = customers[i];
+                customers[i] = null;   // remove by setting to null
+                break;
+            }
+        }
+
+        return removed;
     }
 
     // f) return reference table with all customers
     public Customer[] getCustomers() {
 
-        Customer[] customers = null;
+        // return a COPY of the array to avoid external direct access
+        Customer[] copy = new Customer[customers.length];
 
-        // TODO
+        for (int i = 0; i < customers.length; i++) {
+            copy[i] = customers[i];
+        }
 
-        return customers;
+        return copy;
     }
 }
